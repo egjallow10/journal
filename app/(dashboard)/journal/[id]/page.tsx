@@ -12,7 +12,10 @@ const getEntry = async(id)=>{
                 userId:user.id,
                 id
             }
-        }
+        },
+        include:{
+            analysis:true,
+        },
     })
 
     return entry
@@ -21,11 +24,15 @@ const getEntry = async(id)=>{
 
 const EntryPage = async({ params })=>{
     const entry =  await getEntry(params.id)
+
     return(
-        <div className="h-full w-full">
-        <Editor entry={entry} />
-      </div>
+        (
+            <div className="h-full w-full ">
+              <Editor entry={entry} />
+            </div>
+          )
     )
+    
 }
 
 export default EntryPage

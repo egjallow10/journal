@@ -30,5 +30,18 @@ const createURL = (path) => {
     }
   }
 
+
+  export const deleteEntry = async (id) => {
+    const res = await fetch(
+      new Request(createURL(`/api/journal/${id}`), {
+        method: 'DELETE',
+      })
+    );
+  
+    if (res.ok) {
+      return { success: true };
+    }
+    return { success: false };
+  };
   
   
